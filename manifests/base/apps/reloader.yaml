@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: reloader
+  namespace: argo-cd
+spec:
+  project: default
+  source:
+    repoURL: https://stakater.github.io/stakater-charts
+    chart: reloader
+    targetRevision: 1.1.0
+    helm:
+      valueFiles:
+        - ../../helm-values/reloader/{{env}}.values.yaml
+  destination:
+    namespace: reloader
+    server: {{k8s_api_server}}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-of-apps-development
+  namespace: argo-cd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/sarubhai/argo-cd-app-of-apps.git
+    targetRevision: HEAD
+    path: manifests/overlays/development
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argo-cd
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
