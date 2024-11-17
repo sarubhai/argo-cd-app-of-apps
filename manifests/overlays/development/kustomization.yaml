@@ -1,8 +1,8 @@
 resources:
   - ../../base/app-of-apps.yaml
 
-patchesStrategicMerge:
-  - app-of-apps-patch.yaml
+patches:
+  - path: app-of-apps-patch.yaml
 
 transformers:
   - ../../helm-values/external-secrets/development.values.yaml
