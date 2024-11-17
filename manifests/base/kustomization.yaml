@@ -1,0 +1,5 @@
+resources:
+  - app-of-apps.yaml
+  - apps/external-secrets.yaml
+  - apps/reloader.yaml
+  - apps/sealed-secrets.yaml

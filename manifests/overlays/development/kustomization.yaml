@@ -1,8 +1,5 @@
 resources:
-  - ../../base/app-of-apps.yaml
+  - ../../base
 
 patches:
-  - path: app-of-apps-patch.yaml
-
-transformers:
-  - ../../helm-values/external-secrets/development.values.yaml
+  - path: patch.yaml
