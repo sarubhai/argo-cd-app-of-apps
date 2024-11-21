@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-of-apps
+  namespace: argo-cd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io  
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/sarubhai/argo-cd-app-of-apps.git
+    targetRevision: HEAD
+    path: 1_simple/apps
+  destination:
+    server: https://kubernetes.default.svc
+    # name: in-cluster
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
