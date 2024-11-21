@@ -4,7 +4,7 @@ metadata:
   name: app-of-apps
   namespace: argo-cd
   finalizers:
-    - resources-finalizer.argocd.argoproj.io  
+    - resources-finalizer.argocd.argoproj.io
 spec:
   project: k8s-cluster-tools
   source:

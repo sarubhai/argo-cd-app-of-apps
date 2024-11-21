@@ -1,6 +1,7 @@
-installCRDs: true
-serviceAccount:
-  create: true # false
-  # name: external-secrets
-webhook:
-  port: 10260
+external-secrets:
+  installCRDs: true
+  serviceAccount:
+    create: true # false
+    # name: external-secrets
+  webhook:
+    port: 10260
