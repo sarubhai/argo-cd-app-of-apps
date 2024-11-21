@@ -6,7 +6,6 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  project: k8s-infra-resources
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
   generators:
