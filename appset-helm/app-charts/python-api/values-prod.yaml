@@ -1,0 +1,16 @@
+replicaCount: 3
+ingress:
+  enabled: true
+  className: nginx
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: HTTP
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+  hosts:
+  - host: python-api.local
+    paths:
+    - path: /
+      pathType: Prefix
+  tls:
+  - hosts:
+    - python-api.local
+    secretName: python-api-tls

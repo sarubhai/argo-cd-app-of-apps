@@ -1,0 +1,16 @@
+apiVersion: v2
+name: python-api
+description: A Helm chart for python-api demo
+type: application
+version: 1.0.0
+appVersion: "0.1.2"
+maintainers:
+  - name: sarubhai
+    email: saurav.karate@gmail.com
+keywords:
+  - helm-ghcr-gh-pages-demo
+  - python-api-demo
+dependencies:
+  - name: python-api
+    version: 0.1.2
+    repository: https://sarubhai.github.io/gh-pages-as-helm-repo
