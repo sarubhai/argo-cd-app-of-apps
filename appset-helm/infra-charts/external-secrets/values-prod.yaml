@@ -4,4 +4,4 @@ external-secrets:
     create: true # false
     # name: external-secrets
   webhook:
-    enabled: false
+    create: false
