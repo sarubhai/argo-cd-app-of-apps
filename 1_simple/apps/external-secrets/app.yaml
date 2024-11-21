@@ -7,13 +7,16 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: k8s-cluster-tools
-  source:
-    repoURL: https://charts.external-secrets.io
-    chart: external-secrets
-    targetRevision: 0.10.6
-    helm:
-      valueFiles:
-        - values.yaml
+  sources:
+    - repoURL: https://charts.external-secrets.io
+      chart: external-secrets
+      targetRevision: 0.10.6
+      helm:
+        valueFiles:
+          - $values/1_simple/apps/external-secrets/values.yaml
+    - repoURL: https://github.com/sarubhai/argo-cd-app-of-apps.git
+      targetRevision: HEAD
+      ref: values
   destination:
     server: https://kubernetes.default.svc
     # name: in-cluster
