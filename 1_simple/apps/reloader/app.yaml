@@ -15,7 +15,7 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     # name: in-cluster
-    namespace: reloader
+    namespace: dev-reloader
   syncPolicy:
     automated:
       prune: true
