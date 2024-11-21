@@ -7,7 +7,7 @@ clusters:
       valueFiles: values-dna-dev.yaml
       externalSecrets:
         enabled: true
-        version: 0.10.6
+        version: HEAD
       reloader:
         enabled: true
         version: HEAD
