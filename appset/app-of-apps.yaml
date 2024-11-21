@@ -24,7 +24,7 @@ spec:
       repoURL: https://github.com/sarubhai/argo-cd-app-of-apps.git
       revision: HEAD
       directories:
-      - path: 2_appset/infra-charts/*
+      - path: appset/infra-charts/*
   template:
     metadata:
       name: '{{path.basename}}-{{cluster}}'
