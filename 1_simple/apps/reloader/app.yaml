@@ -1,21 +1,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: external-secrets
+  name: reloader
   namespace: argo-cd
 spec:
   project: default
   source:
-    repoURL: https://charts.external-secrets.io
-    chart: external-secrets
-    targetRevision: 0.10.6
+    repoURL: https://stakater.github.io/stakater-charts
+    chart: reloader
+    targetRevision: 1.1.0
     helm:
       valueFiles:
         - values.yaml
   destination:
     server: https://kubernetes.default.svc
     # name: in-cluster
-    namespace: dev-external-secrets
+    namespace: reloader
   syncPolicy:
     automated:
       prune: true
