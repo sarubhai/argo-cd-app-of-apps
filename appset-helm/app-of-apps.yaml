@@ -1,0 +1,48 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: app-of-apps
+  namespace: argo-cd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  generators:
+  - matrix:
+      generators:
+      ## - clusters: {} # Automatically use all clusters defined within ArgoCD [ .name .server ]
+      - list:
+          elements:
+          - cluster: dev
+            url: https://kubernetes.default.svc
+          - cluster: stg
+            url: https://kubernetes.default.svc
+          - cluster: prod
+            url: https://kubernetes.default.svc
+      - git:
+          repoURL: https://github.com/sarubhai/argo-cd-app-of-apps.git
+          revision: HEAD
+          directories:
+          - path: appset-helm/infra-charts/*
+  template:
+    metadata:
+      name: '{{path.basename}}-{{cluster}}'
+    spec:
+      project: k8s-infra-resources
+      source:
+        repoURL: https://github.com/sarubhai/argo-cd-app-of-apps.git
+        targetRevision: HEAD
+        path: '{{path}}'
+        helm:
+          valueFiles:
+            - 'values-{{cluster}}.yaml' ## 'values-{{name}}.yaml'
+      destination:
+        server: https://kubernetes.default.svc ## {{server}}
+        # name: {{name}}
+        namespace: '{{path.basename}}-{{cluster}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+          - ApplyOutOfSyncOnly=true
