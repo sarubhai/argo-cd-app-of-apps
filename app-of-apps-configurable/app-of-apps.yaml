@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-of-apps-configurable
+  namespace: argo-cd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: k8s-infra-resources
+  source:
+    repoURL: https://github.com/sarubhai/argo-cd-app-of-apps.git
+    path: app-of-apps-configurable/app-of-apps
+    targetRevision: HEAD
+  destination:
+    server: https://kubernetes.default.svc
+    # name: in-cluster
+    namespace: argo-cd
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true
+      - ServerSideApply=true
