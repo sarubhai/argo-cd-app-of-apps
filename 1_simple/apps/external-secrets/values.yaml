@@ -4,3 +4,4 @@ serviceAccount:
   # name: external-secrets
 webhook:
   port: 9443
+  replicaCount: 2
