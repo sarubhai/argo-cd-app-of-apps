@@ -1,0 +1,35 @@
+# Variables values for Chart templates
+clusters:
+  - name: in-cluster
+    infra:
+      enabled: true
+      version: HEAD
+      valueFiles: values-dna-dev.yaml
+      externalSecrets:
+        enabled: true
+        version: HEAD
+      reloader:
+        enabled: true
+        version: HEAD
+  # - name: dna-stg
+  #   infra:
+  #     enabled: true
+  #     version: HEAD
+  #     valueFiles: values-dna-stg.yaml
+  #     externalSecrets:
+  #       enabled: true
+  #       version: HEAD
+  #     reloader:
+  #       enabled: true
+  #       version: HEAD
+  # - name: dna-prod
+  #   infra:
+  #     enabled: true
+  #     version: HEAD
+  #     valueFiles: values-dna-prod.yaml
+  #     externalSecrets:
+  #       enabled: true
+  #       version: HEAD
+  #     reloader:
+  #       enabled: true
+  #       version: HEAD

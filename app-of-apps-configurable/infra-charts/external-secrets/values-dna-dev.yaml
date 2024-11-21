@@ -1,0 +1,15 @@
+external-secrets:
+  installCRDs: true
+  serviceAccount:
+    create: true # false
+    # name: external-secrets
+    annotations: {
+      eks.amazonaws.com/role-arn: arn:aws:iam::123456789012:role/dna-dev-eks-eu-central-1-external-secrets
+    }
+  webhook:
+    create: false
+    # port: 10260
+  certController:
+    create: false
+  podAnnotations:
+      eks.amazonaws.com/role-arn: arn:aws:iam::123456789012:role/dna-dev-eks-eu-central-1-external-secrets
