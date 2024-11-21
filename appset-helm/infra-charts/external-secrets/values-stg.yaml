@@ -3,4 +3,4 @@ serviceAccount:
   create: true # false
   # name: external-secrets
 webhook:
-  port: 10261
+  enabled: false
