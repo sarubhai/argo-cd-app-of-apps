@@ -5,4 +5,4 @@ external-secrets:
     # name: external-secrets
   webhook:
     port: 10260
-    replicaCount: 2
+    replicaCount: 1
