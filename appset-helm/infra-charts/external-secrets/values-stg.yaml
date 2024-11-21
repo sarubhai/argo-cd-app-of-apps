@@ -4,6 +4,7 @@ external-secrets:
     create: true # false
     # name: external-secrets
   webhook:
-    create: false
-  certController:
-    create: false
+    port: 10261
+    # create: false
+  # certController:
+  #   create: false

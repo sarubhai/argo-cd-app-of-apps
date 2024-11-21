@@ -2,3 +2,6 @@ reloader:
   reloader:
     watchGlobally: true
     # ignoreNamespaces: "default"
+    enableHA: true
+    deployment:
+      replicas: 2
