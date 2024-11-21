@@ -1,0 +1,42 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: app-of-apps
+  namespace: argo-cd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - list:
+      elements:
+      - cluster: dev
+        url: https://kubernetes.default.svc
+      - cluster: stg
+        url: https://kubernetes.default.svc
+      - cluster: prod
+        url: https://kubernetes.default.svc
+  - git:
+      repoURL: https://github.com/sarubhai/argo-cd-app-of-apps.git
+      revision: HEAD
+      directories:
+        - path: apps/*/overlays/{{.cluster}}
+  template:
+    metadata:
+      name: '{{index .path.segments 1}}-{{.cluster}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/sarubhai/argo-cd-app-of-apps.git
+        targetRevision: HEAD
+        path: '{{.path.path}}'
+      destination:
+        server: '{{.url}}'
+        namespace: argo-cd # -{{.cluster}}
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true

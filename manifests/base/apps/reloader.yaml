@@ -13,9 +13,11 @@ spec:
       valueFiles:
         - ../../helm-values/reloader/{{env}}.values.yaml
   destination:
-    namespace: reloader
     server: {{k8s_api_server}}
+    namespace: reloader
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
