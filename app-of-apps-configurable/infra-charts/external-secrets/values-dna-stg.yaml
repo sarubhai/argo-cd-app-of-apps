@@ -1,0 +1,10 @@
+external-secrets:
+  installCRDs: true
+  serviceAccount:
+    create: true # false
+    # name: external-secrets
+  webhook:
+    create: true
+    port: 10261
+  certController:
+    create: true

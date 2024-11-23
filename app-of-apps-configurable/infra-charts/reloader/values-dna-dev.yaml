@@ -1,0 +1,4 @@
+reloader:
+  reloader:
+    watchGlobally: true
+    # ignoreNamespaces: "default"
