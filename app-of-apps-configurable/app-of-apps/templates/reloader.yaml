@@ -4,7 +4,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: reloader
+  name: {{printf "%s-%s" .name "reloader"}}
   namespace: argo-cd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
