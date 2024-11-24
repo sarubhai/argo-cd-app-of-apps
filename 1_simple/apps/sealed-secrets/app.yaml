@@ -1,26 +1,26 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: external-secrets
+  name: sealed-secrets
   namespace: argo-cd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: k8s-cluster-tools
   sources:
-    - repoURL: https://charts.external-secrets.io
-      chart: external-secrets
-      targetRevision: 0.10.6
+    - repoURL: https://bitnami-labs.github.io/sealed-secrets
+      chart: sealed-secrets
+      targetRevision: 2.16.2
       helm:
         valueFiles:
-          - $values/1_simple/apps/external-secrets/values.yaml
+          - $values/1_simple/apps/sealed-secrets/values.yaml
     - repoURL: https://github.com/sarubhai/argo-cd-app-of-apps.git
       targetRevision: HEAD
       ref: values
   destination:
     server: https://kubernetes.default.svc
     # name: in-cluster
-    namespace: external-secrets
+    namespace: sealed-secrets
   syncPolicy:
     automated:
       prune: true
